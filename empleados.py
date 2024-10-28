@@ -1,5 +1,5 @@
-from bonos import CalculadorBonosVentas, CalculadorBonosSoporte
 from Empleado import Empleado
+from bonos import CalculadorBonosVentas, CalculadorBonosSoporte
 
 class EmpleadoConMetas(Empleado):
     def __init__(self, nombre, salario, metas):
