@@ -1,11 +1,5 @@
-class Empleado:
-    def __init__(self, nombre, salario):
-        self.nombre = nombre
-        self.salario = salario
-
-    def mostrar_informacion(self):
-        return f"{self.nombre}, Salario: {self.salario}"
-
+from bonos import CalculadorBonosVentas, CalculadorBonosSoporte
+from Empleado import Empleado
 
 class EmpleadoConMetas(Empleado):
     def __init__(self, nombre, salario, metas):
@@ -28,16 +22,16 @@ class EmpleadoTecnico(Empleado):
 class EmpleadoVentas(EmpleadoConMetas):
     def __init__(self, nombre, salario, metas, ventas):
         super().__init__(nombre, salario, metas)
-        self.ventas = ventas
+        self.calculador_bono = CalculadorBonosVentas(ventas)
 
     def calcular_bono(self):
-        return self.ventas * 0.1
+        return self.calculador_bono.calcular()
 
 
 class EmpleadoSoporte(EmpleadoTecnico):
     def __init__(self, nombre, salario, certificaciones, incidencias_resueltas):
         super().__init__(nombre, salario, certificaciones)
-        self.incidencias_resueltas = incidencias_resueltas
+        self.calculador_bono = CalculadorBonosSoporte(incidencias_resueltas)
 
     def calcular_bono(self):
-        return self.incidencias_resueltas * 5
+        return self.calculador_bono.calcular()
